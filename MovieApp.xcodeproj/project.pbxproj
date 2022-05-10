@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CF0765202827094000BD8053 /* CoreTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF07651F2827094000BD8053 /* CoreTabBar.swift */; };
 		CF143740282457FF0097C0F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF14373F282457FF0097C0F9 /* AppDelegate.swift */; };
 		CF143742282457FF0097C0F9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF143741282457FF0097C0F9 /* SceneDelegate.swift */; };
 		CF143749282458010097C0F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF143748282458010097C0F9 /* Assets.xcassets */; };
@@ -48,6 +47,7 @@
 		CF1437BB28245BFB0097C0F9 /* Publisher + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1437BA28245BFB0097C0F9 /* Publisher + Extension.swift */; };
 		CF1437BD28245C560097C0F9 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1437BC28245C560097C0F9 /* APIError.swift */; };
 		CF1437BF28245C680097C0F9 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1437BE28245C680097C0F9 /* Tab.swift */; };
+		CFAA91992828E677005D4155 /* CoreTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAA91982828E677005D4155 /* CoreTabBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,7 +68,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CF07651F2827094000BD8053 /* CoreTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreTabBar.swift; sourceTree = "<group>"; };
 		CF14373C282457FF0097C0F9 /* MovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF14373F282457FF0097C0F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CF143741282457FF0097C0F9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,6 +112,7 @@
 		CF1437BA28245BFB0097C0F9 /* Publisher + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher + Extension.swift"; sourceTree = "<group>"; };
 		CF1437BC28245C560097C0F9 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		CF1437BE28245C680097C0F9 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
+		CFAA91982828E677005D4155 /* CoreTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreTabBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,7 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				CF14374A282458010097C0F9 /* LaunchScreen.storyboard */,
-				CF07651F2827094000BD8053 /* CoreTabBar.swift */,
+				CFAA91982828E677005D4155 /* CoreTabBar.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -469,7 +469,7 @@
 				CF1437A228245B0A0097C0F9 /* AbstractRouter.swift in Sources */,
 				CF143770282458A70097C0F9 /* SceneController.swift in Sources */,
 				CF143786282459A80097C0F9 /* CoreEvent.swift in Sources */,
-				CF0765202827094000BD8053 /* CoreTabBar.swift in Sources */,
+				CFAA91992828E677005D4155 /* CoreTabBar.swift in Sources */,
 				CF1437B528245BC70097C0F9 /* CommonError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
