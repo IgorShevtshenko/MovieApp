@@ -8,35 +8,38 @@
 import SwiftUI
 
 struct CoreTabBar: View {
-    @State var selectedTab: Tab = .home
+    @State private var sellectedTab: Tab = .home
     @State private var xAxis: CGFloat = 0
-
+    
+    private let tabBarColor: Color = Color(red: 35/255, green: 34/255, blue: 39/255)
+    private let selectedTabColor: Color = Color(red: 188/255, green: 138/255, blue: 0/255)
     private let home: AnyView
     private let search: AnyView
     private let media: AnyView
 
     init(
         home: AnyView,
-        search: AnyView,
-        media: AnyView
+        media: AnyView,
+        search: AnyView
     ) {
         self.home = home
-        self.search = search
         self.media = media
+        self.search = search
     }
 
     var body: some View {
         ZStack(alignment: .center) {
-            TabView(selection: $selectedTab) {
-                switch selectedTab {
+
+            TabView(selection: $sellectedTab) {
+                switch sellectedTab {
                 case .home:
                     home
                         .ignoresSafeArea()
-                case .search:
-                    search
-                        .ignoresSafeArea()
                 case .media:
                     media
+                        .ignoresSafeArea()
+                case .search:
+                    search
                         .ignoresSafeArea()
                 }
             }
@@ -44,29 +47,46 @@ struct CoreTabBar: View {
                 Spacer()
                 HStack(spacing: 0) {
                     ForEach(Tab.allCases, id: \.self) { tab in
-                        if tab == .search { Spacer(minLength: 0) }
-                        Button {
-                            selectedTab = tab
-                        } label: {
-                            Image(systemName: tabImage(tab))
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 25, height: 25)
-                                .foregroundColor(tab == selectedTab ? Color.blue : Color.gray)
+                        if tab == .media { Spacer() }
+
+                        GeometryReader { proxy in
+                            Button {
+                                withAnimation {
+                                    sellectedTab = tab
+                                    xAxis = proxy.frame(in: .global).minX
+                                }
+                            } label: {
+                                Image(systemName: tabImage(tab))
+                                    .resizable()
+                                    .renderingMode(.template)
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 25, height: 25)
+                                    .foregroundColor(tab == sellectedTab ? selectedTabColor : Color.gray)
+                                    .padding(sellectedTab == tab ? 15 : 0)
+                                    .background(tabBarColor.opacity(sellectedTab == tab ? 1: 0).clipShape(Circle()))
+                                    .offset(x: sellectedTab == tab ? (proxy.frame(in: .global).minX - proxy.frame(in: .global).midX) : 0 ,y: sellectedTab == tab ? -50 : 0)
+                            }
+                            .onAppear {
+                                if tab == sellectedTab {
+                                    xAxis = proxy.frame(in: .global).minX
+                                }
+                            }
                         }
-                        if tab == .search { Spacer(minLength: 0) }
+                        .frame(width: 25, height: 25)
+
+                        if tab == .media { Spacer() }
                     }
                 }
                 .padding(.horizontal, 60)
                 .padding(.vertical)
-                .background(Color.white.clipShape(TabBarShape(xAxis: self.xAxis)))
-                .cornerRadius(50)
+                .background(tabBarColor.clipShape(TabBarShape(xAxis: xAxis)).cornerRadius(25))
                 .padding(.horizontal, idiomIsPhone() ? nil : tabBarHorizontalPaddingForIpad())
                 Spacer()
                     .frame(height: 5)
             }
         }
     }
+
 
     private func tabImage(_ tab: Tab) -> String {
         switch tab {
@@ -95,6 +115,10 @@ struct CoreTabBar: View {
 
 struct TabBarShape: Shape {
     var xAxis: CGFloat
+    var animatableData: CGFloat {
+        get { return xAxis }
+        set { xAxis = newValue }
+    }
 
     func path(in rect: CGRect) -> Path {
         return Path { path in
@@ -104,7 +128,7 @@ struct TabBarShape: Shape {
             path.addLine(to: CGPoint(x: rect.width, y: rect.height))
             path.addLine(to: CGPoint(x: 0, y: rect.height))
 
-            let center = xAxis / 2
+            let center = xAxis
 
             path.move(to: CGPoint(x: center - 50, y: 0))
             let to1 = CGPoint(x: center, y: 35)
@@ -121,8 +145,5 @@ struct TabBarShape: Shape {
     }
 }
 
-struct CoreTabBar_Previews: PreviewProvider {
-    static var previews: some View {
-        CoreTabBar(home: AnyView(Color.red), search: AnyView(Color.green), media: AnyView(Color.blue))
-    }
-}
+
+
