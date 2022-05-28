@@ -21,11 +21,6 @@ public struct RootComponent: Component {
     }
 
     private func makeCore() -> Router {
-        let presenter = CorePresenter()
-        let renderer = CoreRenderer(presenter: presenter)
-        return LeafRouter(
-            renderer: renderer.asAny(),
-            viewState: presenter
-        )
+        CoreComponent(parent: self).makeCore()
     }
 }

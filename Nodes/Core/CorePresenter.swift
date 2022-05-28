@@ -2,8 +2,9 @@ import Combine
 import Foundation
 
 public class CorePresenter: AbstractViewStatePublisher<CoreViewState> {
-    private let events = PassthroughSubject<RootEvent, Never>()
-
+    
+    private let events = PassthroughSubject<CoreEvent, Never>()
+    
     public init() {
         super.init(
             initial: ViewState(),
@@ -11,10 +12,8 @@ public class CorePresenter: AbstractViewStatePublisher<CoreViewState> {
             reducer: Self.reduce
         )
     }
-
-    private static func reduce(state: ViewState, event _: RootEvent) -> ViewState {
-        return state
-    }
+    
+    private static func reduce(state: ViewState, event: CoreEvent) -> ViewState {}
 }
 
 extension CorePresenter: CorePresenting {}
