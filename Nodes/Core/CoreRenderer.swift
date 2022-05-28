@@ -1,18 +1,22 @@
-import Foundation
 import SwiftUI
-import UIKit
+import Foundation
 
 public struct CoreRenderer: ViewStateRenderer {
+    
     private let presenter: CorePresenting
-
+    
     public init(presenter: CorePresenting) {
         self.presenter = presenter
     }
-
+    
     public func render(
-        state _: CoreViewState,
-        router _: AnyRouting<Never>
+        state: CoreViewState,
+        router: AnyRouting<CoreRouting>
     ) -> some View {
-        CoreTabBar(home: AnyView(Color.red), search: AnyView(Color.green), media: AnyView(Color.blue))
+        CoreTabBar(
+            home: router.routing(for: .home),
+            media: router.routing(for: .media),
+            search: router.routing(for: .search)
+        )
     }
 }
